@@ -70,7 +70,6 @@ class MonostateSingleton:
     __shared_state = dict()
 
     def __init__(self):
-        self.x = 1
         self.__dict__ = self.__shared_state
 
 
@@ -87,6 +86,10 @@ class MonostateSingleton2:
 
 
 class MetaSingleton(type):
+    """
+        元类实现的单例
+        TODO:这种单例的实现还得仔细多看看
+    """
     __instance = dict()
 
     def __call__(cls, *args, **kwargs):

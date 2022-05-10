@@ -7,7 +7,8 @@
 ------------------------------------------
     工厂方法模式
         + 定义一个接口来创建对象，但是工厂本省并不负责创建对象，而是将这一任务交由子类来完成，即子类决定了要实例化哪些类
-        + Factory方法的创建是通过集成而不是通过实例化来完成的
+
+        + Factory方法的创建是通过继承而不是通过实例化来完成的
         + 工厂方法使设计更加具有可定制性。
         + 它可以返回相同的实例或子类，而不是某种类型的对象（就像在简单工厂方法中的那样）
 
@@ -32,16 +33,21 @@ from abc import ABCMeta, abstractmethod
 
 class Section(metaclass=ABCMeta):
     """
+        Creator
         Section抽象基类定义一个区是关于哪方面内容的，尽量保持简洁
     """
 
     @abstractmethod
     def describe(self):
+        """
+        factoryMethod()抽象方法
+        """
         pass
 
 
 class PersonalSection(Section):
     def describe(self):
+        """实现factoryMethod()方法"""
         print("Personal Section")
 
 
@@ -74,3 +80,30 @@ class Profile(metaclass=ABCMeta):
 
     def add_section(self, section):
         self.sections.append(section)
+
+
+class LinkedIn(Profile):
+    def create_profile(self):
+        self.add_section(PersonalSection())
+        self.add_section(PatentSection())
+        self.add_section(PublicationSection())
+
+
+class FaceBook(Profile):
+    def create_profile(self):
+        self.add_section(PersonalSection())
+        self.add_section(AlbumSection())
+
+
+if __name__ == '__main__':
+    """
+        编写决定实例化哪个Creator类的客户端代码，以遍根据指定的选项创建所需的简介
+    """
+    profile_type = input("Which Profile you'd like to create? [LinkIn or FaceBook]")
+    profiles = {
+        'linkedin': LinkedIn,
+        'facebook': FaceBook
+    }
+    profile = profiles.get(profile_type.lower())()
+    print("Creating Profile ..", type(profile).__name__)
+    print("Profile has sections --", profile.get_sections())

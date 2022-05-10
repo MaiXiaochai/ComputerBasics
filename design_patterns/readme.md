@@ -54,15 +54,15 @@
             + 简单工厂模式
                 + 允许接口创建对象，但不会暴露对象的创建逻辑
             + 工厂方法模式
-                + 允许创建接口，但使用那个类来创建对象，则是交由子类决定的
+                + 允许创建接口，但使用哪个类来创建对象，则是交由子类决定的
                 + UML
-                ![img.png](images/factory_method.png)
-                  + 包含factoryMethod()方法的抽象类Creator
-                  + factoryMethod()方法负责创建指定类型的对象
-                  + ConcreteCreator类提供一个实现Creator抽象类的factoryMethod(),这种方法可以在运行时修改已创建的对象
-                  + ConcreteCreator创建ConcreteProduct,并确保其创建的对象实现了Product类，同时为Product接口中的所有方法提供相应的实现
-                  + 简言之，Creator接口的factoryMethod()方法和ConcreteCreator类共同决定了要创建Product的哪个子类
-                  + 因此，工厂方法模式定义了一个接口来创建对象，但具体实例化哪个类则是由它的子类决定的
+                  ![img.png](images/factory_method.png)
+                    + 包含factoryMethod()方法的抽象类Creator
+                    + factoryMethod()方法负责创建指定类型的对象
+                    + ConcreteCreator类提供一个实现Creator抽象类的factoryMethod(),这种方法可以在运行时修改已创建的对象
+                    + ConcreteCreator创建ConcreteProduct,并确保其创建的对象实现了Product类，同时为Product接口中的所有方法提供相应的实现
+                    + 简言之，Creator接口的factoryMethod()方法和ConcreteCreator类共同决定了要创建Product的哪个子类
+                    + 因此，工厂方法模式定义了一个接口来创建对象，但具体实例化哪个类则是由它的子类决定的
             + 抽象工厂模式
                 + 能够创建一系列相关的对象而无需指定/公开其具体类的接口
                 + 该模式能够提供其它工厂的对象，在其内部创建其它对象

@@ -95,6 +95,7 @@ class PizzaStore:
             self.veg_pizza = self.factory.create_veg_pizza()
             self.veg_pizza.prepare()
             self.non_veg_pizza.serve()
+            print()
 
 
 if __name__ == '__main__':

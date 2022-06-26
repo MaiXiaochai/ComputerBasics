@@ -10,8 +10,16 @@
 
     这里以披萨店举例
         披萨店有印式披萨和美式披萨。我们先创建一个抽象基类 PizzaFactory。
-        该方法提供两个抽象方法：create_ceg_pizza()和create_non_veg_pizza()。他们需要通过ConcreteFactory实现。
-        我们创造建了两个具体的工厂：IndiaPizzaFactory和USPizzaFactory
+        该方法提供两个抽象方法：create_ceg_pizza()和 create_non_veg_pizza()。他们需要通过ConcreteFactory实现。
+        我们创造建了两个具体的工厂：IndiaPizzaFactory和 USPizzaFactory。
+
+        然后让我们定义AbstractProducts。创建两个抽象基类: VegPizza和 NonVegPizza（AbstractProduct和 AnotherAbstractProduct）。
+        他们都定义了自己的方法：prepare()和 serve()。
+        这里的想法是：
+            素食披萨饼：  配有适当的外皮、蔬菜和调味料
+            非素食披萨饼：在素食披萨饼上面搭配非素食食材
+
+        然后我们定义 AbstractPizza(),他们都定义了自己的方法
 """
 from abc import ABCMeta, abstractmethod
 
@@ -19,9 +27,10 @@ from abc import ABCMeta, abstractmethod
 class PizzaFactory(metaclass=ABCMeta):
     @abstractmethod
     def create_veg_pizza(self):
+        """蔬菜披萨"""
         pass
 
     @abstractmethod
     def create_non_veg_pizza(self):
+        """非蔬菜披萨"""
         pass
-

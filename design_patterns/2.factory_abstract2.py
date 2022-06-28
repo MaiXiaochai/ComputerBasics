@@ -64,7 +64,18 @@ class Bug(ObstacleFactory):
         return 'eats it'
 
 
-class FrogWorld:
+class WorldFactory(metaclass=ABCMeta):
+    @abstractmethod
+    def make_character(self):
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def make_obstacle():
+        pass
+
+
+class FrogWorld(WorldFactory):
     """
         FrogWorld是一个抽象工厂，其主要职责是创建游戏的主人公和障碍物。
         区分创建方法并使其名字通用(比如，make_character()和 make_obstacle())，
@@ -99,7 +110,7 @@ class Wizard(CharacterFactory):
         return self.name
 
     def interact_with(self, obstacle):
-        print(f"{self} the Wizard battles against {obstacle} and {obstacle.action}!")
+        print(f"{self} the Wizard battles against {obstacle} and {obstacle.action()}!")
 
 
 class Ork(ObstacleFactory):
@@ -115,7 +126,7 @@ class Ork(ObstacleFactory):
         return "kills it"
 
 
-class WizardWorld:
+class WizardWorld(WorldFactory):
     def __init__(self, name):
         print(self)
         self.player_name = name
@@ -130,3 +141,43 @@ class WizardWorld:
     def make_obstacle():
         return Ork()
 
+
+class GameEnvironment:
+    """
+        游戏入口，相当于Client
+    """
+
+    def __init__(self, factory):
+        self.hero = factory.make_character()
+        self.obstacle = factory.make_obstacle()
+
+    def play(self):
+        self.hero.interact_with(self.obstacle)
+
+
+def validate_age(name):
+    age = -1
+    try:
+        age = input(f'Welcome {name}. How old are you? ')
+        age = int(age)
+
+    except ValueError as err:
+        print(f'Age {age} is invalid, please try again...')
+        return False, age
+
+    return True, age
+
+
+def main():
+    name = input("Hello, What's your name? ")
+    valid_input = False
+
+    while not valid_input:
+        valid_input, age = validate_age(name)
+        game = FrogWorld if age < 18 else WizardWorld
+        environment = GameEnvironment(game(name))
+        environment.play()
+
+
+if __name__ == '__main__':
+    main()

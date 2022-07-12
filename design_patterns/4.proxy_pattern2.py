@@ -40,3 +40,19 @@ class Test:
     @LazyProperty
     def resource(self):
         print(f"Initializing self._resource which is: {self._resource}")
+        self._resource = tuple(range(5))
+
+        return self._resource
+
+
+def main():
+    t = Test()
+    print(t.x)
+    print(t.y)
+
+    print(t.resource)
+    print(t.resource)
+
+
+if __name__ == '__main__':
+    main()

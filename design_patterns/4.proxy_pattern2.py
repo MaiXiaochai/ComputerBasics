@@ -39,13 +39,21 @@ class Test:
 
     @LazyProperty
     def resource(self):
+        # 注意：__get__访问方法的重写使得resource()方法可以当做一个变量（可以使用t.resource代替t.resource()）
         print(f"Initializing self._resource which is: {self._resource}")
-        self._resource = tuple(range(5))
+        self._resource = tuple(range(5))  # 假设这一行的计算成本比较大
 
         return self._resource
 
 
 def main():
+    """
+    foo
+    bar
+    Initializing self._resource which is: None
+    (0, 1, 2, 3, 4)
+    (0, 1, 2, 3, 4)
+    """
     t = Test()
     print(t.x)
     print(t.y)

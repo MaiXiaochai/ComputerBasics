@@ -156,3 +156,4 @@
           + 远程代理还便于与可用作网络连接和数据库连接的远程服务器进行交互，并可用于监视系统
         + 门面模式和代理模式的比较
           + ![img.png](images/facade_vs_proxy.png)
+    + 观察者模式（observer pattern）

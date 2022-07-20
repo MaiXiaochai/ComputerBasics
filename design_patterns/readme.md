@@ -158,3 +158,4 @@
           + ![img.png](images/facade_vs_proxy.png)
     + 观察者模式（observer pattern）
         + 在观察者设计模式中，对象（主题）维护了一个依赖（观察者）列表，以便主题可以使用观察者定义的任何方法通知所有观察者它所发生的变化
+        + ![observer pattern UML](images/observer_pattern.png)

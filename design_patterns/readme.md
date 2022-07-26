@@ -235,7 +235,7 @@
             + ConcreteCommand
                 + 将一个Receiver对象和一个操作绑定在一起
             + Client
-                + 创建ConcereteCommand对象兵设定其接收者
+                + 创建ConcereteCommand对象并设定其接收者
             + Invoker
                 + 要求该ConcreteCommand执行这个请求
             + Receiver

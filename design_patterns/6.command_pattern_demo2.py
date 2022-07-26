@@ -13,6 +13,7 @@ class Command(metaclass=ABCMeta):
     def __init__(self, recv):
         self.recv = recv
 
+    @abstractmethod
     def execute(self):
         pass
 
@@ -20,3 +21,32 @@ class Command(metaclass=ABCMeta):
 class ConcreteCommand(Command):
     def execute(self):
         self.recv.action()
+
+
+class Receiver:
+    @staticmethod
+    def action():
+        print("Receiver Action")
+
+
+class Invoker:
+    def __init__(self):
+        self.cmd = None
+
+    def command(self, cmd):
+        self.cmd = cmd
+
+    def execute(self):
+        self.cmd.execute()
+
+
+def main():
+    recv = Receiver()
+    cmd = ConcreteCommand(recv)
+    invoker = Invoker()
+    invoker.command(cmd)
+    invoker.execute()
+
+
+if __name__ == '__main__':
+    main()

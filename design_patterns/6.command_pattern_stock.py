@@ -42,7 +42,7 @@ class StockTrade:
     @staticmethod
     def buy():
         print("You will buy stocks")
-
+ 
     @staticmethod
     def sell():
         print("You will sell stocks")
